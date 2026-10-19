@@ -1,0 +1,21 @@
+name: offline-checks
+on:
+  pull_request:
+  push:
+    branches: [main, "research/**"]
+permissions:
+  contents: read
+jobs:
+  node-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+      - name: Verify runtime
+        run: node --version
+      - name: Run isolated synthetic tests
+        run: npm test
+      - name: Run harmless baseline demo
+        run: npm run demo

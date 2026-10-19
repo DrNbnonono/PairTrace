@@ -1,0 +1,6 @@
+{"type":"pair.requested","ts":1,"userId":"alice","deviceId":"phone","requestId":"req1","nonce":"n1","requestedScopes":["tool.exec"],"expiresAt":100}
+{"type":"pair.approved","ts":2,"userId":"alice","deviceId":"phone","requestId":"req1","nonce":"n1","approverId":"alice","approvedScopes":["tool.exec"]}
+{"type":"session.opened","ts":3,"userId":"alice","deviceId":"phone","sessionId":"s1","scopes":["tool.exec"]}
+{"type":"action.requested","ts":4,"actionId":"a1","sessionId":"s1","tool":"fixture.noop","argsDigest":"sha256:fixture","requiredScope":"tool.exec"}
+{"type":"action.approved","ts":5,"actionId":"a1","sessionId":"s1","approverId":"alice","tool":"fixture.noop","argsDigest":"sha256:fixture"}
+{"type":"action.executed","ts":6,"actionId":"a1","sessionId":"s1","tool":"fixture.noop","argsDigest":"sha256:fixture"}
