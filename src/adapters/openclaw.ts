@@ -100,7 +100,7 @@ export function parseOpenClawCapture(input: string): OpenClawCapture {
   try { headerRaw = JSON.parse(lines[0]!); } catch { throw new Error("Malformed capture header JSON"); }
   const h = object(headerRaw);
   if (!h || h.kind !== "capture.header" || h.product !== "openclaw" ||
-      typeof h.version !== "string" || h.version.length > 64 ||
+      h.version !== "2026.10.5" ||
       !origins.has(h.origin as CaptureOrigin) || !observers.has(h.observer as CaptureHeader["observer"]))
     throw new Error("Invalid OpenClaw capture header");
   const frames: CaptureFrame[] = [];
@@ -184,10 +184,12 @@ export function analyzeOpenClawWire(capture: OpenClawCapture): WireReport {
         s.connectId = id;
         s.requestedRole = str(params?.role);
         s.requestedScopes = strings(params?.scopes);
-        if (!s.challenge) {
-          warn(index, s, "CHALLENGE_NOT_OBSERVED", "Missing preceding challenge in the capture; a capture gap is possible.");
-        } else if (str(device?.nonce) !== s.challenge) {
-          warn(index, s, "CHALLENGE_NONCE_MISMATCH", "Captured connect nonce differs from server challenge; no cryptographic signature verification performed.");
+        if (device) {
+          if (!s.challenge) {
+            warn(index, s, "CHALLENGE_NOT_OBSERVED", "Missing preceding challenge in the capture; a capture gap is possible.");
+          } else if (str(device.nonce) !== s.challenge) {
+            warn(index, s, "CHALLENGE_NONCE_MISMATCH", "Captured connect nonce differs from server challenge; no cryptographic signature verification performed.");
+          }
         }
         observe(index, s, kind, device ? "device_identity_claimed" : "device_identity_absent");
       } else if (!s.admitted) {
@@ -219,9 +221,9 @@ export function analyzeOpenClawWire(capture: OpenClawCapture): WireReport {
           warn(index, s, "NEGOTIATED_ROLE_DIFFERS", "Server effective role differs from client's requested role; review policy.");
         if (s.requestedScopes && effectiveScopes && effectiveScopes.some((v) => !s.requestedScopes!.includes(v)))
           warn(index, s, "NEGOTIATED_SCOPE_DIFFERS", "Server effective scopes extend beyond client's declared scopes; review server semantics.");
-        s.admitted = true;
+        s.admitted = Boolean(auth && grantedRole && effectiveScopes);
         s.waitingForPair = false;
-        observe(index, s, "connect.hello", "admitted_by_gateway");
+        observe(index, s, "connect.hello", s.admitted ? "admitted_by_gateway" : "hello_auth_incomplete");
       } else {
         const error = object(frame.error);
         const details = object(error?.details);

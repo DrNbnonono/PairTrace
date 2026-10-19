@@ -71,3 +71,25 @@ test("an unknown wire method name is classified without echoing it", () => {
   assert.equal(result.observations.at(-1)?.kind, "other.request");
   assert.equal(JSON.stringify(result).includes("LEAK_ME"), false);
 });
+
+test("capture header must match explicitly pinned upstream release", () => {
+  const text = readFileSync("fixtures/openclaw/handshake.jsonl", "utf8").replace('"version":"2026.10.5","origin"', '"version":"2026.3.31","origin"');
+  assert.throws(() => parseOpenClawCapture(text), /Invalid OpenClaw capture header/);
+});
+test("documented backend device-less path does not create a false nonce mismatch", () => {
+  const cap = good();
+  const connect = cap.frames[1]!.frame;
+  const params = { ...(connect.params as Record<string,unknown>) };
+  delete params.device;
+  cap.frames[1] = { ...cap.frames[1]!, frame: { ...connect, params } };
+  const r = report(cap);
+  assert.equal(r.review.some((item) => item.code === "CHALLENGE_NONCE_MISMATCH"), false);
+});
+test("truncated hello auth is not treated as completed admission", () => {
+  const cap = good();
+  const response = cap.frames[2]!.frame;
+  cap.frames[2] = { ...cap.frames[2]!, frame: { ...response, payload: { type: "hello-ok" } } };
+  const r = report(cap);
+  assert.equal(r.observations.at(-1)?.status, "hello_auth_incomplete");
+  assert.ok(r.review.some((item) => item.code === "HELLO_AUTH_INCOMPLETE"));
+});
