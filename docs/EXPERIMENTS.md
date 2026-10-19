@@ -8,6 +8,14 @@
 
 These are **synthetic conformance cases**, *not* demonstrated vendor defects.
 
+## E3: source-pinned OpenClaw wire observer
+
+- `fixtures/openclaw/handshake.jsonl`: challenge, claimed connect and authoritative hello; no secrets leave the report.
+- `fixtures/openclaw/pending-pair.jsonl`: pairing resolution notice does not create admission.
+- `fixtures/openclaw/node-capability.jsonl`: node capability approval and device pairing are distinct.
+
+These records mirror documented frame shapes but are **not live captures** and omit some fields required by the full upstream schema. They test the observer's behavior and inability to overclaim.
+
 ## Future controlled experiment format
 
 Each run: experiment ID; tested product + exact version/commit; configuration; host OS; account/role matrix; hypothesis/property ID; complete intended event order; network conditions; observer points; JSONL trace; raw evidence hash; adapter version; outcome; false-positive review; issue/report reference.

@@ -4,11 +4,16 @@
   "version": "0.1.0",
   "description": "Offline research scaffold for cross-device AI agent control-plane authorization integrity",
   "type": "module",
-  "engines": { "node": ">=22.16.0" },
+  "engines": {
+    "node": ">=22.16.0"
+  },
   "scripts": {
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "demo": "node --experimental-strip-types src/cli.ts fixtures/valid.jsonl",
     "demo:revoked": "node --experimental-strip-types src/cli.ts fixtures/revoked.jsonl",
-    "demo:binding": "node --experimental-strip-types src/cli.ts fixtures/approval-mismatch.jsonl"
+    "demo:binding": "node --experimental-strip-types src/cli.ts fixtures/approval-mismatch.jsonl",
+    "gateway:demo": "node --experimental-strip-types src/cli-gateway.ts fixtures/openclaw/handshake.jsonl",
+    "gateway:pending": "node --experimental-strip-types src/cli-gateway.ts fixtures/openclaw/pending-pair.jsonl",
+    "gateway:capability": "node --experimental-strip-types src/cli-gateway.ts fixtures/openclaw/node-capability.jsonl"
   }
 }
