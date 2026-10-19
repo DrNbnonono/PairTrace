@@ -21,7 +21,10 @@ git clone https://github.com/DrNbnonono/PairTrace.git
 cd PairTrace
 npm test
 npm run demo
-node --experimental-strip-types src/cli.ts fixtures/approval-mismatch.jsonl --json
+npm run gateway:demo
+npm run gateway:pending
+npm run gateway:capability
+node --experimental-strip-types src/cli-gateway.ts fixtures/openclaw/handshake.jsonl --json
 ```
 
 The demo uses **synthetic data**. `--strict` causes the CLI to exit with code 2 when an offline policy violation is found.
@@ -43,14 +46,16 @@ The demo uses **synthetic data**. `--strict` causes the CLI to exit with code 2 
 
 ### Implemented
 
-- Canonical event schema: pairing request/approval, session open/close, action request/approval/execution, device revocation\n- OpenClaw v2026.10.5 WS frame envelopes: challenge/connect/hello, device-pair outcomes, node capability approval notices; safely projected without leaking wire secrets
+- Canonical event schema: pairing request/approval, session open/close, action request/approval/execution, device revocation
+- OpenClaw v2026.10.5 WS frame envelopes: challenge/connect/hello, device-pair outcomes, node capability approval notices; safely projected without leaking wire secrets
 - Stateful policy checks: request/nonce/expiry/scope binding, owner/approver binding, stale pairing generations, post-revocation actions, execution-to-approval binding
 - Command-line offline analysis, small reproducible fixtures, unit tests and CI
 - Threat model, evidence ledger, scope boundaries, adapter contract and experiment roadmap
 
 ### Not implemented
 
-- Running OpenClaw client, active traffic capture, observed live Gateway traces or trusted DB audit integration\n- OpenCode/Hermes/Codex/Claude adapters; full OpenClaw upstream schema verification
+- Running OpenClaw client, active traffic capture, observed live Gateway traces or trusted DB audit integration
+- OpenCode/Hermes/Codex/Claude adapters; full OpenClaw upstream schema verification
 - Remote scanning, credential handling, exploitation or live Agent commands
 - TLA+ specification, differential fuzzing, causal scheduler, benchmark baselines
 - Assertions that any vendor has the demonstrated synthetic vulnerabilities
@@ -61,7 +66,8 @@ The demo uses **synthetic data**. `--strict` causes the CLI to exit with code 2 
 - [Threat model and normative assumptions](docs/THREAT_MODEL.md)
 - [Related work and evidence confidence](docs/RELATED_WORK.md)
 - [Agent comparison and verification ledger](docs/EVIDENCE_LEDGER.md)
-- [OpenClaw pinned wire analysis and experimental capture instructions](docs/OPENCLAW_WIRE_STUDY.md)\n- [Adapter specification](docs/PROTOCOL_ADAPTERS.md)
+- [OpenClaw pinned wire analysis and experimental capture instructions](docs/OPENCLAW_WIRE_STUDY.md)
+- [Adapter specification](docs/PROTOCOL_ADAPTERS.md)
 - [Experiment protocol and result criteria](docs/EXPERIMENTS.md)
 - [Ethics and disclosure policy](docs/ETHICS.md)
 

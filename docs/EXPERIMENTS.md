@@ -6,7 +6,15 @@
 - **E1: revoked controller** — `revoked.jsonl` must trigger `EXECUTION_AFTER_REVOCATION` under strict immediate-revocation baseline.
 - **E2: authorization-to-execution binding** — `approval-mismatch.jsonl` must trigger `EXECUTION_BINDING_MISMATCH`.
 
-These are **synthetic conformance cases**, *not* demonstrated vendor defects.\n\n## E3: source-pinned OpenClaw wire observer\n\n- `fixtures/openclaw/handshake.jsonl`: challenge, claimed connect and authoritative hello; no secrets leave the report.\n- `fixtures/openclaw/pending-pair.jsonl`: pairing resolution notice does not create admission.\n- `fixtures/openclaw/node-capability.jsonl`: node capability approval and device pairing are distinct.\n\nThese records mirror documented frame shapes but are **not live captures** and omit some fields required by the full upstream schema. They test the observer's behavior and inability to overclaim.
+These are **synthetic conformance cases**, *not* demonstrated vendor defects.
+
+## E3: source-pinned OpenClaw wire observer
+
+- `fixtures/openclaw/handshake.jsonl`: challenge, claimed connect and authoritative hello; no secrets leave the report.
+- `fixtures/openclaw/pending-pair.jsonl`: pairing resolution notice does not create admission.
+- `fixtures/openclaw/node-capability.jsonl`: node capability approval and device pairing are distinct.
+
+These records mirror documented frame shapes but are **not live captures** and omit some fields required by the full upstream schema. They test the observer's behavior and inability to overclaim.
 
 ## Future controlled experiment format
 
