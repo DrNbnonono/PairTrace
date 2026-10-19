@@ -65,6 +65,13 @@ The demo uses **synthetic data**. `--strict` causes the CLI to exit with code 2 
 - [Experiment protocol and result criteria](docs/EXPERIMENTS.md)
 - [Ethics and disclosure policy](docs/ETHICS.md)
 
+## Milestone issues
+
+- [M1: source verification and version-pinned matrix](https://github.com/DrNbnonono/PairTrace/issues/2)
+- [M2: safe read-only OpenClaw adapter](https://github.com/DrNbnonono/PairTrace/issues/3)
+- [M3: asynchronous authorizations and grant epochs](https://github.com/DrNbnonono/PairTrace/issues/4)
+- [M4: historical baselines and ethical validation](https://github.com/DrNbnonono/PairTrace/issues/5)
+
 ## Scope and research integrity
 
 Findings are **policy violations in supplied traces**, not proof of a security vulnerability in a real product. A violation becomes a vendor finding only after version-specific reproduction, documentation review, accurate trust-boundary modeling, and responsible disclosure.

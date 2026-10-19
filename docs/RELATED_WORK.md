@@ -7,6 +7,7 @@ Provenance: starting list from the user's attached Claude research report (2026-
 | AgentThread — Formal Security Analysis of Agent Protocol Composition (2026) | specification-linked invariants, TLA+ and SDK replay; **direct method competitor** | A (abstract) | https://arxiv.org/abs/2606.28690 |
 | Demystifying the (In)Security of QR Code-based Login (USENIX 2025) | QR pairing taxonomy, 6 design flaw classes, real-world deployment study | A (publisher page) | https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-xin |
 | OpenClaw Gateway protocol / pairing | actual WS control-plane terminology, roles and device pairing | A (official docs) | https://docs.openclaw.ai/gateway/protocol |
+| RFC 10027 (IETF BCP 247, 2026) | cross-device consent/session-phishing mitigations; **primary normative baseline, not Agent-specific** | A (RFC Editor) | https://www.rfc-editor.org/rfc/rfc10027.html |
 | AgentRFC (2026) | principled conformance testing for agent protocols | B | https://arxiv.org/abs/2603.23801 |
 | Loopjacking (2026) | approval-to-execution integrity hypothesis | B | https://arxiv.org/abs/2609.21081 |
 | Your IoTs Are (Not) Mine (DSN 2019) | analogous remote device binding failures | B | search primary venue |

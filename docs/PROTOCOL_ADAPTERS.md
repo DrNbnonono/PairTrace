@@ -30,7 +30,7 @@ A compliant adapter must supply provenance: product/version, ingress surface, ev
 | System | Channel class | Official source for future analysis | State |
 | --- | --- | --- | --- |
 | OpenClaw | Gateway WS / pairing | https://docs.openclaw.ai/gateway/protocol | not started |
-| OpenCode | Local HTTP control | https://opencode.ai/docs/server/ | not started |
+| OpenCode | Local HTTP control | https://docs.opencode.ai/docs/server/ | not started |
 | Claude Code Remote Control | Cloud-mediated, proprietary | https://code.claude.com/docs/en/remote-control | docs only; no adapter |
 | Codex remote | Cloud-mediated, proprietary | user-supplied report; independent official source required | docs pending |
 | Hermes Agent | IM gateway | vendor source/version pending confirmation | pending |
