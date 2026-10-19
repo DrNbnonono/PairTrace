@@ -18,4 +18,4 @@ jobs:
       - name: Run isolated synthetic tests
         run: npm test
       - name: Run harmless baseline demo
-        run: npm run demo
+        run: npm run demo\n      - name: Run OpenClaw protocol-derived offline demo\n        run: npm run gateway:demo

@@ -1,6 +1,6 @@
 # Adapter contract / 协议适配器规范
 
-No adapter is implemented in v0. This document describes the boundary between authentic wire frames and PairTrace's normalized event schema.
+v0.2 implements a **redaction-first offline OpenClaw WS observer**, but not a product-specific conversion to the high-level authorization `Event` schema. Those events would require gateway-authoritative identity and execution evidence, not just wire claims. See [OpenClaw wire study](OPENCLAW_WIRE_STUDY.md).
 
 ## Interface proposal
 
@@ -29,7 +29,7 @@ A compliant adapter must supply provenance: product/version, ingress surface, ev
 
 | System | Channel class | Official source for future analysis | State |
 | --- | --- | --- | --- |
-| OpenClaw | Gateway WS / pairing | https://docs.openclaw.ai/gateway/protocol | not started |
+| OpenClaw | Gateway WS / pairing | https://github.com/openclaw/openclaw/tree/v2026.10.5 | offline frame observer implemented; no real capture |
 | OpenCode | Local HTTP control | https://docs.opencode.ai/docs/server/ | not started |
 | Claude Code Remote Control | Cloud-mediated, proprietary | https://code.claude.com/docs/en/remote-control | docs only; no adapter |
 | Codex remote | Cloud-mediated, proprietary | user-supplied report; independent official source required | docs pending |
